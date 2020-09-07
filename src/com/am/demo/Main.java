@@ -1,5 +1,6 @@
 package com.am.demo;
 
+import com.am.demo.food.Food;
 import com.am.demo.listeners.MyKeyListener;
 import com.am.demo.panes.Field;
 import com.am.demo.snake.Snake;
@@ -21,8 +22,9 @@ public class Main extends Application {
         root.setPadding(new Insets(10));
         Field field= new Field(30,20);
 
-        Snake snake= new Snake(7, field);
+        Snake snake= new Snake(10, field);
         field.addSnake(snake);
+        field.addFood(new Food(5,3, field, snake));
 
         BlockMovement movement= new BlockMovement(field);
         Thread move= new Thread(movement);

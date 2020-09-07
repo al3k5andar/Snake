@@ -1,7 +1,9 @@
 package com.am.demo.panes;
 
 import com.am.demo.Main;
+import com.am.demo.food.Food;
 import com.am.demo.snake.Snake;
+import javafx.application.Platform;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 
@@ -16,6 +18,7 @@ public class Field extends Pane
     private boolean isCrashed= false;
 
     private Snake snake;
+    private Food food;
 
     public Field(int width, int height){
         this.fieldWidth= width;
@@ -37,7 +40,6 @@ public class Field extends Pane
     }
 
     public void update(String direction){
-        System.out.println("Updating.....");
         if(!isCrashed) {
             for (Block block : blocks) {
                 isCrashed = snakeCrash();
@@ -58,6 +60,34 @@ public class Field extends Pane
         }
         return false;
     }
+
+    public void addFood(Food food){
+        this.food= food;
+        this.getChildren().add(food);
+    }
+
+    public void blockUpdate(){
+        Block last= snake.getBlocks().get(snake.getBlocks().size()-1);
+        blocks.add(last);
+        this.getChildren().add(last);
+    }
+
+
+
+    public void eatBiteDiagnostic(){
+        Block head= blocks.get(0);
+        Field field= this;
+        if(head.getPositionX()== food.getPositionX() && head.getPositionY()== food.getPositionY())
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    food.moveFood();
+                    snake.updateSnake();
+                    field.blockUpdate();
+                }
+            });
+    }
+
 
 
     public int getFieldWidth() {

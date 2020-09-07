@@ -30,8 +30,9 @@ public class BlockMovement implements Runnable
                     checkIsCrashed(field.isCrashed(),"RIGHT");
                     break;
             }
+            field.eatBiteDiagnostic();
             try{
-                Thread.sleep(300);
+                Thread.sleep(100);
             }
             catch (InterruptedException e){}
         }

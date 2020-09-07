@@ -66,7 +66,6 @@ public class Block extends BlockPane
         else {
             this.setPositionX(previous.oldPositionX);
             this.setPositionY(previous.oldPositionY);
-            System.out.println("Other: "+ this.getPositionX()+" / "+ this.getPositionY());
         }
         setTranslation(this.getPositionX(), this.getPositionY());
     }
@@ -126,4 +125,11 @@ public class Block extends BlockPane
         this.previous = previous;
     }
 
+    public int getOldPositionX() {
+        return oldPositionX;
+    }
+
+    public int getOldPositionY() {
+        return oldPositionY;
+    }
 }

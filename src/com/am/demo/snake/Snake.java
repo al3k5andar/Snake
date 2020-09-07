@@ -28,6 +28,11 @@ public class Snake
         }
     }
 
+    public void updateSnake(){
+        Block last= blocks.get(blocks.size()-1);
+        blocks.add(new Block(last.getOldPositionX(), last.getOldPositionY(),last, field));
+    }
+
     public List<Block> getBlocks() {
         return blocks;
     }
