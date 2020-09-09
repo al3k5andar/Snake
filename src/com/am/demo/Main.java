@@ -4,6 +4,7 @@ import com.am.demo.food.Food;
 import com.am.demo.listeners.MyKeyListener;
 import com.am.demo.panes.Field;
 import com.am.demo.snake.Snake;
+import com.am.demo.snake.SpeedRegulator;
 import com.am.demo.threads.BlockMovement;
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -26,7 +27,9 @@ public class Main extends Application {
         field.addSnake(snake);
         field.addFood(new Food(5,3, field, snake));
 
-        BlockMovement movement= new BlockMovement(field);
+        SpeedRegulator speedRegulator= new SpeedRegulator(snake);
+
+        BlockMovement movement= new BlockMovement(field, speedRegulator, snake);
         Thread move= new Thread(movement);
         move.start();
 
