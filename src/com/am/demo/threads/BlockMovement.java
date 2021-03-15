@@ -8,7 +8,6 @@ public class BlockMovement implements Runnable
 {
     private Field field;
     private String direction;
-    static boolean masterThreadRunning= true;
     private boolean gamePlayRunning = true;
     private SpeedRegulator speedRegulator;
     private Snake snake;
@@ -37,6 +36,7 @@ public class BlockMovement implements Runnable
                     checkIsCrashed(field.isCrashed(), "RIGHT");
                     break;
             }
+//            If the snake head is on same position like food, eats the food, in other way continue further
             field.eatBiteDiagnostic();
             try {
                 speedRegulator.setSnakeLength(snake.getBlocks().size() - 1);
@@ -49,10 +49,13 @@ public class BlockMovement implements Runnable
         System.out.println("GAME OVER");
 
     }
+
+//    Direction is set in MyKeyListener
     public void setDirection(String direction){
         this.direction= direction;
     }
 
+//    If snake is crashed while loop in run method stops and program ends, on the other hand the game is continues
     private void checkIsCrashed(boolean isCrashed, String direction){
         if(isCrashed)
             gamePlayRunning = false;

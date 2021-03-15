@@ -23,6 +23,7 @@ public class Block extends BlockPane
         this.setTranslateY(positionY * Main.blockSize);
     }
 
+//    Calculate position of next block when is the snake head moved to next position
     public void update(String direction){
         oldPositionX= positionX;
         oldPositionY= positionY;

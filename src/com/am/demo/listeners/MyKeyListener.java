@@ -12,6 +12,7 @@ public class MyKeyListener implements EventHandler<KeyEvent>
         this.blockMovement = blockMovement;
     }
 
+//    Key listener, set in which direction is snake going
     @Override
     public void handle(KeyEvent event) {
         switch (event.getCode()){

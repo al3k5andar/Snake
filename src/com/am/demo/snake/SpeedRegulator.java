@@ -10,10 +10,12 @@ public class SpeedRegulator
         snakeLength= snake.getBlocks().size()-1;
     }
 
+//    Get snake speed
     public int regulator(){
         return countSpeed(this.getSnakeLength());
     }
 
+//    Calculate the snake speed, speed is depend of the snake length and is calculated in milliseconds
     private int countSpeed(int snakeLength) {
         int speed= 160;
         if (snakeLength >= 10 && snakeLength < 13)

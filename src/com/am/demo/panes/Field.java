@@ -28,17 +28,20 @@ public class Field extends Pane
         this.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, null, new BorderWidths(1))));
     }
 
+//    Add the snake on field
     public void addSnake(Snake snake){
         this.snake= snake;
         for(Block block: snake.getBlocks())
             this.addSnakeBlocks(block);
     }
 
+//    Add block to snake and to field
     private void addSnakeBlocks(Block block){
         blocks.add(block);
         this.getChildren().add(block);
     }
 
+//    If snake isn't eat itself update all its blocks
     public void update(String direction){
         if(!isCrashed) {
             for (Block block : blocks) {
@@ -48,6 +51,7 @@ public class Field extends Pane
         }
     }
 
+//    Check does snake eat itself
     public boolean snakeCrash(){
         Block head= blocks.get(0);
 
@@ -61,11 +65,13 @@ public class Field extends Pane
         return false;
     }
 
+//    Add food on field
     public void addFood(Food food){
         this.food= food;
         this.getChildren().add(food);
     }
 
+//    Add block to the snake end
     public void blockUpdate(){
         Block last= snake.getBlocks().get(snake.getBlocks().size()-1);
         blocks.add(last);
@@ -74,6 +80,7 @@ public class Field extends Pane
 
 
 
+//    Update snake length and move food if it is eaten
     public void eatBiteDiagnostic(){
         Block head= blocks.get(0);
         Field field= this;
@@ -82,7 +89,7 @@ public class Field extends Pane
                 @Override
                 public void run() {
                     food.moveFood();
-                    snake.updateSnake();
+                    snake.addBlockOnTheSnakeEnd();
                     field.blockUpdate();
                 }
             });

@@ -37,8 +37,13 @@ public class Food extends Block
 
         while(!loopStop){
 
+//            Generate random coordinates
             int posX= random.nextInt(field.getFieldWidth());
             int posY= random.nextInt(field.getFieldHeight());
+
+//            Checks if the current block is reserved
+//            If block is reserved generate another coordinates
+//            In other hand set generated coordinates to food block
             for(Block block: snake.getBlocks()){
                 isReserved= isReservedPosition(posX, posY, block);
                 if(isReserved) {
@@ -58,6 +63,7 @@ public class Food extends Block
         this.setTranslateY(this.getPositionY()* Main.blockSize);
     }
 
+//    Checks if the food is placed on one of snake block position
     private boolean isReservedPosition(int posX, int posY, Block block){
         return block.getPositionX()== posX && block.getPositionY()== posY;
     }
